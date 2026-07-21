@@ -1,0 +1,638 @@
+=== QScout Physical Validation Log ===
+Started: 2026-07-17T13:51:31.406801
+
+
+=== PHASE 3B: PHYSICAL VALIDATION ===
+
+Robot port: /dev/ttyUSB0
+Start time: 2026-07-17T13:51:31.406997
+
+Connection opened: True
+Port: /dev/ttyUSB0
+Baudrate: 115200
+
+
+=== TEST: GET_DEVICE_INFO (0x01) ===
+
+TX [2026-07-17T13:51:31.422988] GET_DEVICE_INFO
+  Hex: 52420600019b
+  Len: 6
+  Bytes: [82, 66, 6, 0, 1, 155]
+  Checksum: 155 (calc: 155)
+  Header: b'RB'
+  Length field: 6
+  Order ID: 0
+  Action: 0x01
+
+RX [2026-07-17T13:51:31.489574] DEVICE_INFO response
+  Hex: 52420800030001a0
+  Len: 8
+  Bytes: [82, 66, 8, 0, 3, 0, 1, 160]
+  Checksum: 160 (calc: 160, valid: True)
+  Header: b'RB'
+  Length field: 8
+  Order ID: 0
+  Action: 0x03
+  Payload: [0, 1]
+
+  Parsed: {'action': 3, 'hw_version': 0, 'sw_version': 1}
+
+=== TEST: Response Structure Analysis ===
+
+TX [2026-07-17T13:51:31.990410] GET_VOLTAGE (structure test)
+  Hex: 52420701a30140
+  Len: 7
+  Bytes: [82, 66, 7, 1, 163, 1, 64]
+  Checksum: 64 (calc: 64)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 1
+  Action: 0xA3
+  Payload: [1]
+
+ERROR [2026-07-17T13:51:32.993781] GET_VOLTAGE: No response
+
+TX [2026-07-17T13:51:32.994051] GET_ULTRASONIC (structure test)
+  Hex: 52420702a1013f
+  Len: 7
+  Bytes: [82, 66, 7, 2, 161, 1, 63]
+  Checksum: 63 (calc: 63)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 2
+  Action: 0xA1
+  Payload: [1]
+
+RX [2026-07-17T13:51:33.173162] GET_ULTRASONIC response (structure)
+  Hex: 524208020109c46c
+  Len: 8
+  Bytes: [82, 66, 8, 2, 1, 9, 196, 108]
+  Checksum: 108 (calc: 108, valid: True)
+  Header: b'RB'
+  Length field: 8
+  Order ID: 2
+  Action: 0x01
+  Payload: [9, 196]
+
+  Analysis: {'header': b'RB', 'length': 8, 'order_id': 2, 'action': '0x01', 'checksum_valid': True, 'payload': [9, 196]}
+TX [2026-07-17T13:51:33.173939] GET_BUTTON (structure test)
+  Hex: 52420703a20141
+  Len: 7
+  Bytes: [82, 66, 7, 3, 162, 1, 65]
+  Checksum: 65 (calc: 65)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 3
+  Action: 0xA2
+  Payload: [1]
+
+ERROR [2026-07-17T13:51:34.176900] GET_BUTTON: No response
+
+TX [2026-07-17T13:51:34.177153] GET_LIGHT (structure test)
+  Hex: 52420704a60247
+  Len: 7
+  Bytes: [82, 66, 7, 4, 166, 2, 71]
+  Checksum: 71 (calc: 71)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 4
+  Action: 0xA6
+  Payload: [2]
+
+ERROR [2026-07-17T13:51:35.181320] GET_LIGHT: No response
+
+
+=== TEST: GET_ULTRASONIC (0xA1) on port 1 ===
+
+TX [2026-07-17T13:51:35.681980] GET_ULTRASONIC port=1
+  Hex: 52420705a10142
+  Len: 7
+  Bytes: [82, 66, 7, 5, 161, 1, 66]
+  Checksum: 66 (calc: 66)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 5
+  Action: 0xA1
+  Payload: [1]
+
+RX [2026-07-17T13:51:35.856501] ULTRASONIC response
+  Hex: 524208050109c46f
+  Len: 8
+  Bytes: [82, 66, 8, 5, 1, 9, 196, 111]
+  Checksum: 111 (calc: 111, valid: True)
+  Header: b'RB'
+  Length field: 8
+  Order ID: 5
+  Action: 0x01
+  Payload: [9, 196]
+
+  Distance: 2500 mm
+
+=== TEST: GET_VOLTAGE (0xA3) ===
+
+TX [2026-07-17T13:51:36.357616] GET_VOLTAGE
+  Hex: 52420706a30145
+  Len: 7
+  Bytes: [82, 66, 7, 6, 163, 1, 69]
+  Checksum: 69 (calc: 69)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 6
+  Action: 0xA3
+  Payload: [1]
+
+ERROR [2026-07-17T13:51:37.359226] No response received
+
+
+=== TEST: GET_BUTTON (0xA2) on port 1 ===
+
+TX [2026-07-17T13:51:37.859860] GET_BUTTON port=1
+  Hex: 52420707a20145
+  Len: 7
+  Bytes: [82, 66, 7, 7, 162, 1, 69]
+  Checksum: 69 (calc: 69)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 7
+  Action: 0xA2
+  Payload: [1]
+
+ERROR [2026-07-17T13:51:38.861176] No response received
+
+
+=== TEST: GET_LIGHT (0xA6) on port 2 ===
+
+TX [2026-07-17T13:51:39.361846] GET_LIGHT port=2
+  Hex: 52420708a6024b
+  Len: 7
+  Bytes: [82, 66, 7, 8, 166, 2, 75]
+  Checksum: 75 (calc: 75)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 8
+  Action: 0xA6
+  Payload: [2]
+
+ERROR [2026-07-17T13:51:40.362974] No response received
+
+
+=== TEST: GET_TEMP_HUMIDITY (0xA5) on port 2 ===
+
+TX [2026-07-17T13:51:40.863619] GET_TEMP_HUMIDITY port=2
+  Hex: 52420709a5024b
+  Len: 7
+  Bytes: [82, 66, 7, 9, 165, 2, 75]
+  Checksum: 75 (calc: 75)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 9
+  Action: 0xA5
+  Payload: [2]
+
+ERROR [2026-07-17T13:51:41.868863] No response received
+
+
+=== TEST: GET_LINE_VALUE (0xA4) on port 3 ===
+
+TX [2026-07-17T13:51:42.369534] GET_LINE_VALUE port=3
+  Hex: 5242070aa4034c
+  Len: 7
+  Bytes: [82, 66, 7, 10, 164, 3, 76]
+  Checksum: 76 (calc: 76)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 10
+  Action: 0xA4
+  Payload: [3]
+
+RX [2026-07-17T13:51:42.441947] LINE_VALUE response
+  Hex: 5242070a0102a8
+  Len: 7
+  Bytes: [82, 66, 7, 10, 1, 2, 168]
+  Checksum: 168 (calc: 168, valid: True)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 10
+  Action: 0x01
+  Payload: [2]
+
+  Line value: 2
+
+=== TEST: GET_VOICE (0xA7) on port 1 ===
+
+TX [2026-07-17T13:51:42.943038] GET_VOICE port=1
+  Hex: 5242070ba7014e
+  Len: 7
+  Bytes: [82, 66, 7, 11, 167, 1, 78]
+  Checksum: 78 (calc: 78)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 11
+  Action: 0xA7
+  Payload: [1]
+
+ERROR [2026-07-17T13:51:43.945480] No response received
+
+
+=== TEST: GET_INFRARED (0xA8) on port 1 ===
+
+TX [2026-07-17T13:51:44.446082] GET_INFRARED port=1
+  Hex: 5242070ca80150
+  Len: 7
+  Bytes: [82, 66, 7, 12, 168, 1, 80]
+  Checksum: 80 (calc: 80)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 12
+  Action: 0xA8
+  Payload: [1]
+
+ERROR [2026-07-17T13:51:45.448496] No response received
+
+
+=== TEST: GET_INTERFACE_INFO (0x02) on port 1 ===
+
+TX [2026-07-17T13:51:45.949121] GET_INTERFACE_INFO port=1
+  Hex: 5242070d0201ab
+  Len: 7
+  Bytes: [82, 66, 7, 13, 2, 1, 171]
+  Checksum: 171 (calc: 171)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 13
+  Action: 0x02
+  Payload: [1]
+
+RX [2026-07-17T13:51:46.041865] INTERFACE_INFO response
+  Hex: 5242060d04ab
+  Len: 6
+  Bytes: [82, 66, 6, 13, 4, 171]
+  Checksum: 171 (calc: 171, valid: True)
+  Header: b'RB'
+  Length field: 6
+  Order ID: 13
+  Action: 0x04
+
+  Interface info: {'type': 171}
+
+=== TEST: GET_ALL_INTERFACE_INFO (0x03) ===
+
+TX [2026-07-17T13:51:46.543118] GET_ALL_INTERFACE_INFO
+  Hex: 5242060e03ab
+  Len: 6
+  Bytes: [82, 66, 6, 14, 3, 171]
+  Checksum: 171 (calc: 171)
+  Header: b'RB'
+  Length field: 6
+  Order ID: 14
+  Action: 0x03
+
+ERROR [2026-07-17T13:51:47.548737] No response received
+
+
+=== TEST: GET_MOTOR_INTERFACE_INFO (0x04) ===
+
+TX [2026-07-17T13:51:48.049404] GET_MOTOR_INTERFACE_INFO
+  Hex: 5242060f04ad
+  Len: 6
+  Bytes: [82, 66, 6, 15, 4, 173]
+  Checksum: 173 (calc: 173)
+  Header: b'RB'
+  Length field: 6
+  Order ID: 15
+  Action: 0x04
+
+RX [2026-07-17T13:51:48.111524] MOTOR_INTERFACE_INFO response
+  Hex: 5242070f0101ac
+  Len: 7
+  Bytes: [82, 66, 7, 15, 1, 1, 172]
+  Checksum: 172 (calc: 172, valid: True)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 15
+  Action: 0x01
+  Payload: [1]
+
+  Motor info: {'motor_a': 1, 'motor_b': 172}
+>>> Please observe the robot LED <<<
+
+=== TEST: SET_LED (0x10) port=-4 RGB=(255,0,0) ===
+
+TX [2026-07-17T13:51:48.612803] SET_LED port=-4 RGB=(255,0,0)
+  Hex: 52420a1010fcff0000b9
+  Len: 10
+  Bytes: [82, 66, 10, 16, 16, 252, 255, 0, 0, 185]
+  Checksum: 185 (calc: 185)
+  Header: b'RB'
+  Length field: 10
+  Order ID: 16
+  Action: 0x10
+  Payload: [252, 255, 0, 0]
+
+RX [2026-07-17T13:51:48.715617] SET_LED response
+  Hex: 5242061001ab
+  Len: 6
+  Bytes: [82, 66, 6, 16, 1, 171]
+  Checksum: 171 (calc: 171, valid: True)
+  Header: b'RB'
+  Length field: 6
+  Order ID: 16
+  Action: 0x01
+
+
+=== TEST: SET_LED (0x10) port=-4 RGB=(0,0,0) ===
+
+TX [2026-07-17T13:51:50.716888] SET_LED port=-4 RGB=(0,0,0)
+  Hex: 52420a1110fc000000bb
+  Len: 10
+  Bytes: [82, 66, 10, 17, 16, 252, 0, 0, 0, 187]
+  Checksum: 187 (calc: 187)
+  Header: b'RB'
+  Length field: 10
+  Order ID: 17
+  Action: 0x10
+  Payload: [252, 0, 0, 0]
+
+RX [2026-07-17T13:51:50.814604] SET_LED response
+  Hex: 5242061101ac
+  Len: 6
+  Bytes: [82, 66, 6, 17, 1, 172]
+  Checksum: 172 (calc: 172, valid: True)
+  Header: b'RB'
+  Length field: 6
+  Order ID: 17
+  Action: 0x01
+
+>>> Please observe the robot LED <<<
+
+=== TEST: SET_LED (0x10) port=-4 RGB=(0,255,0) ===
+
+TX [2026-07-17T13:51:51.315559] SET_LED port=-4 RGB=(0,255,0)
+  Hex: 52420a1210fc00ff00bb
+  Len: 10
+  Bytes: [82, 66, 10, 18, 16, 252, 0, 255, 0, 187]
+  Checksum: 187 (calc: 187)
+  Header: b'RB'
+  Length field: 10
+  Order ID: 18
+  Action: 0x10
+  Payload: [252, 0, 255, 0]
+
+RX [2026-07-17T13:51:51.418042] SET_LED response
+  Hex: 5242061201ad
+  Len: 6
+  Bytes: [82, 66, 6, 18, 1, 173]
+  Checksum: 173 (calc: 173, valid: True)
+  Header: b'RB'
+  Length field: 6
+  Order ID: 18
+  Action: 0x01
+
+
+=== TEST: SET_LED (0x10) port=-4 RGB=(0,0,0) ===
+
+TX [2026-07-17T13:51:53.419068] SET_LED port=-4 RGB=(0,0,0)
+  Hex: 52420a1310fc000000bd
+  Len: 10
+  Bytes: [82, 66, 10, 19, 16, 252, 0, 0, 0, 189]
+  Checksum: 189 (calc: 189)
+  Header: b'RB'
+  Length field: 10
+  Order ID: 19
+  Action: 0x10
+  Payload: [252, 0, 0, 0]
+
+RX [2026-07-17T13:51:53.516925] SET_LED response
+  Hex: 5242061301ae
+  Len: 6
+  Bytes: [82, 66, 6, 19, 1, 174]
+  Checksum: 174 (calc: 174, valid: True)
+  Header: b'RB'
+  Length field: 6
+  Order ID: 19
+  Action: 0x01
+
+>>> Please observe the robot LED <<<
+
+=== TEST: SET_LED (0x10) port=-4 RGB=(0,0,255) ===
+
+TX [2026-07-17T13:51:54.018053] SET_LED port=-4 RGB=(0,0,255)
+  Hex: 52420a1410fc0000ffbd
+  Len: 10
+  Bytes: [82, 66, 10, 20, 16, 252, 0, 0, 255, 189]
+  Checksum: 189 (calc: 189)
+  Header: b'RB'
+  Length field: 10
+  Order ID: 20
+  Action: 0x10
+  Payload: [252, 0, 0, 255]
+
+RX [2026-07-17T13:51:54.116957] SET_LED response
+  Hex: 5242061401af
+  Len: 6
+  Bytes: [82, 66, 6, 20, 1, 175]
+  Checksum: 175 (calc: 175, valid: True)
+  Header: b'RB'
+  Length field: 6
+  Order ID: 20
+  Action: 0x01
+
+
+=== TEST: SET_LED (0x10) port=-4 RGB=(0,0,0) ===
+
+TX [2026-07-17T13:51:56.118029] SET_LED port=-4 RGB=(0,0,0)
+  Hex: 52420a1510fc000000bf
+  Len: 10
+  Bytes: [82, 66, 10, 21, 16, 252, 0, 0, 0, 191]
+  Checksum: 191 (calc: 191)
+  Header: b'RB'
+  Length field: 10
+  Order ID: 21
+  Action: 0x10
+  Payload: [252, 0, 0, 0]
+
+RX [2026-07-17T13:51:56.220979] SET_LED response
+  Hex: 5242061501b0
+  Len: 6
+  Bytes: [82, 66, 6, 21, 1, 176]
+  Checksum: 176 (calc: 176, valid: True)
+  Header: b'RB'
+  Length field: 6
+  Order ID: 21
+  Action: 0x01
+
+>>> Please listen for the buzzer <<<
+
+=== TEST: SET_BUZZER (0x13) freq=440 dur=500 ===
+
+TX [2026-07-17T13:51:56.722106] SET_BUZZER freq=440 dur=500
+  Hex: 52420b1613fab801f40170
+  Len: 11
+  Bytes: [82, 66, 11, 22, 19, 250, 184, 1, 244, 1, 112]
+  Checksum: 112 (calc: 112)
+  Header: b'RB'
+  Length field: 11
+  Order ID: 22
+  Action: 0x13
+  Payload: [250, 184, 1, 244, 1]
+
+  No response (expected for SET commands)
+>>> Please observe motor movement <<<
+>>> WARNING: Very low speed for safety <<<
+
+=== TEST: SET_MOVE (0x11) M1=20 M2=20 ===
+
+TX [2026-07-17T13:51:58.228498] SET_MOVE M1=20 M2=20
+  Hex: 5242091711001414ed
+  Len: 9
+  Bytes: [82, 66, 9, 23, 17, 0, 20, 20, 237]
+  Checksum: 237 (calc: 237)
+  Header: b'RB'
+  Length field: 9
+  Order ID: 23
+  Action: 0x11
+  Payload: [0, 20, 20]
+
+  No response (expected for SET commands)
+
+=== TEST: SET_MOVE (0x11) M1=0 M2=0 ===
+
+TX [2026-07-17T13:52:00.734963] SET_MOVE M1=0 M2=0
+  Hex: 5242091811000000c6
+  Len: 9
+  Bytes: [82, 66, 9, 24, 17, 0, 0, 0, 198]
+  Checksum: 198 (calc: 198)
+  Header: b'RB'
+  Length field: 9
+  Order ID: 24
+  Action: 0x11
+  Payload: [0, 0, 0]
+
+  No response (expected for SET commands)
+>>> Please observe motor movement <<<
+
+=== TEST: SET_MOVE (0x11) M1=-20 M2=-20 ===
+
+TX [2026-07-17T13:52:01.740803] SET_MOVE M1=-20 M2=-20
+  Hex: 524209191100ecec9f
+  Len: 9
+  Bytes: [82, 66, 9, 25, 17, 0, 236, 236, 159]
+  Checksum: 159 (calc: 159)
+  Header: b'RB'
+  Length field: 9
+  Order ID: 25
+  Action: 0x11
+  Payload: [0, 236, 236]
+
+  No response (expected for SET commands)
+
+=== TEST: SET_MOVE (0x11) M1=0 M2=0 ===
+
+TX [2026-07-17T13:52:04.246057] SET_MOVE M1=0 M2=0
+  Hex: 5242091a11000000c8
+  Len: 9
+  Bytes: [82, 66, 9, 26, 17, 0, 0, 0, 200]
+  Checksum: 200 (calc: 200)
+  Header: b'RB'
+  Length field: 9
+  Order ID: 26
+  Action: 0x11
+  Payload: [0, 0, 0]
+
+  No response (expected for SET commands)
+
+=== TEST: GET_GYRO (0xA9) on port 1 ===
+
+TX [2026-07-17T13:52:05.248063] GET_GYRO port=1
+  Hex: 5242081ba9010061
+  Len: 8
+  Bytes: [82, 66, 8, 27, 169, 1, 0, 97]
+  Checksum: 97 (calc: 97)
+  Header: b'RB'
+  Length field: 8
+  Order ID: 27
+  Action: 0xA9
+  Payload: [1, 0]
+
+ERROR [2026-07-17T13:52:06.251942] No response received
+
+
+=== TEST: GET_COLOR (0xAA) on port 1 ===
+
+TX [2026-07-17T13:52:06.752720] GET_COLOR port=1
+  Hex: 5242081caa010063
+  Len: 8
+  Bytes: [82, 66, 8, 28, 170, 1, 0, 99]
+  Checksum: 99 (calc: 99)
+  Header: b'RB'
+  Length field: 8
+  Order ID: 28
+  Action: 0xAA
+  Payload: [1, 0]
+
+ERROR [2026-07-17T13:52:07.756499] No response received
+
+
+=== TEST: GET_TOUCH_BUTTON (0xAB) on port 1 ===
+
+TX [2026-07-17T13:52:08.257124] GET_TOUCH_BUTTON port=1
+  Hex: 5242071dab0164
+  Len: 7
+  Bytes: [82, 66, 7, 29, 171, 1, 100]
+  Checksum: 100 (calc: 100)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 29
+  Action: 0xAB
+  Payload: [1]
+
+ERROR [2026-07-17T13:52:09.260422] No response received
+
+
+=== TEST: GET_ROCKER (0xAE) on port 1 ===
+
+TX [2026-07-17T13:52:09.761147] GET_ROCKER port=1
+  Hex: 5242071eae0168
+  Len: 7
+  Bytes: [82, 66, 7, 30, 174, 1, 104]
+  Checksum: 104 (calc: 104)
+  Header: b'RB'
+  Length field: 7
+  Order ID: 30
+  Action: 0xAE
+  Payload: [1]
+
+ERROR [2026-07-17T13:52:10.766443] No response received
+
+Connection closed: True
+
+=== TEST SUMMARY ===
+
+Total packets: 43
+TX packets: 31
+RX packets: 12
+Log file: logs/validation_20260717_135131.log
+
+Results:
+  device_info: {'action': 3, 'hw_version': 0, 'sw_version': 1}
+  ultrasonic: {'distance': 2500}
+  voltage: {}
+  button: {}
+  light: {}
+  temp_humidity: {}
+  line_value: {'value': 2}
+  voice: {}
+  infrared: {}
+  interface_info: {'type': 171}
+  all_interface_info: {}
+  motor_interface_info: {'motor_a': 1, 'motor_b': 172}
+  led_red: {'response': [82, 66, 6, 16, 1, 171]}
+  led_green: {'response': [82, 66, 6, 18, 1, 173]}
+  led_blue: {'response': [82, 66, 6, 20, 1, 175]}
+  buzzer: {}
+  motor_forward_slow: {}
+  motor_backward_slow: {}
+  gyro: {}
+  color: {}
+  touch_button: {}
+  rocker: {}
