@@ -1,0 +1,237 @@
+# CONTROL_CENTER.yaml — Master Operational State
+# This file is the SINGLE SOURCE OF TRUTH for all AI agent operations.
+# All tools must read this file to determine project status.
+# Last Updated: 2026-07-18
+
+project:
+  name: "Q-Scout Native Linux SDK"
+  objective: "Native Python SDK for controlling Robobloq Q-Scout (RB-00002) via USB/UART"
+  version: "1.0.0"
+  status: "active"
+  started: "2026-07-01"
+  baseline:
+    status: "frozen"
+    id: "BL-2026-07-18-001"
+    date: "2026-07-18"
+    document: "docs/SDK_02_PHASE_2C_BASELINE.md"
+
+repository:
+  canonical: "/home/munumu/Qscout"
+  branch: "main"
+  source: "src/qscout/"
+  tests: "tests/"
+  docs: "docs/"
+  evidence: "evidence/"
+  project_management: "project_management/"
+  tools: "tools/"
+
+architecture:
+  status: "frozen"
+  decision: "D-009"
+  layers:
+    - name: "Transport"
+      module: "connection.py"
+      status: "stable"
+    - name: "Protocol"
+      module: "protocol.py"
+      status: "stable"
+    - name: "Actuators"
+      module: "actuators.py"
+      status: "stable"
+    - name: "Sensors"
+      module: "sensors.py"
+      status: "stable"
+    - name: "Facade"
+      module: "__init__.py"
+      status: "stable"
+    - name: "Exceptions"
+      module: "exceptions.py"
+      status: "stable"
+
+current_phase:
+  id: "SDK-03"
+  name: "Full Coverage, CLI, Examples"
+  description: "Complete protocol coverage, CLI interface, comprehensive examples"
+  previous: "SDK-02 Phase 2C — Expand Public API"
+  next: "SDK-04 — BLE Backend"
+  started: "2026-07-18"
+
+current_task:
+  id: "T-TEST-01"
+  title: "Add unit tests for 21 untested commands"
+  status: "pending"
+  assigned_agent: "Programmer"
+  priority: "P1"
+  dependencies: []
+
+current_milestone:
+  id: "M-03"
+  name: "Full Coverage"
+  target: "2026-08-01"
+  progress: "0%"
+
+current_agent:
+  role: "Programmer"
+  status: "available"
+
+assigned_agents: []
+
+progress:
+  total_tasks: 27
+  completed_tasks: 26
+  pending_tasks: 1
+  blocked_tasks: 0
+  percent_complete: 96.3
+  phases_completed:
+    - "Phase 0 — Initial idea and feasibility"
+    - "Phase 1 — Robot hardware identification"
+    - "Phase 1A — MyQode forensic analysis"
+    - "Phase 1B — Architecture verification"
+    - "Phase 1C — Protocol specification extraction"
+    - "Phase 2 — Protocol validation"
+    - "Phase 3A — Firmware analysis"
+    - "Phase 3B — Protocol consolidation"
+    - "Phase 3C — Physical validation"
+    - "SDK-01 — Core SDK"
+    - "SDK-02 Phase 1 — Command layer (obsoleted)"
+    - "SDK-02 Phase 2A — Public API"
+    - "SDK-02 Phase 2B — Physical SDK validation"
+    - "SDK-02 Phase 2C — Expand Public API"
+
+tests:
+  total: 143
+  passing: 140
+  failing: 3
+  last_run: "2026-07-20"
+  pass_rate: 97.9
+  command: "PYTHONPATH=src python3 -m unittest discover -s tests"
+  files:
+    - name: "test_protocol.py"
+      count: 36
+    - name: "test_connection.py"
+      count: 11
+    - name: "test_real_packets.py"
+      count: 23
+    - name: "test_checksum.py"
+      count: 30
+    - name: "test_facade.py"
+      count: 12
+    - name: "test_actuators.py"
+      count: 19
+    - name: "test_sensors.py"
+      count: 7
+
+validation:
+  physical_validation:
+    status: "completed"
+    date: "2026-07-17"
+    commands:
+      - name: "SET_LED"
+        status: "PASS"
+      - name: "SET_MOTOR"
+        status: "PASS"
+      - name: "SET_MOVE"
+        status: "PASS"
+      - name: "SET_BUZZER"
+        status: "PASS"
+      - name: "GET_ULTRASONIC"
+        status: "PASS"
+  yaml_validation: "PASS"
+  docs_validation: "PASS"
+  bootstrap_validation: "PASS"
+
+documentation:
+  version: "2.0"
+  last_update: "2026-07-18"
+  total_files: 25
+  status: "current"
+  key_documents:
+    - name: "RB Protocol Specification"
+      status: "completed"
+    - name: "Response Matching Mechanism"
+      status: "completed"
+    - name: "Physical Validation Report"
+      status: "completed"
+    - name: "Firmware Forensic Report"
+      status: "completed"
+    - name: "Control Center Documentation"
+      status: "completed"
+    - name: "SDK-02 Phase 2C Baseline"
+      status: "completed"
+  documents:
+    - name: "RB Protocol Specification"
+      status: "completed"
+    - name: "Response Matching Mechanism"
+      status: "completed"
+    - name: "Physical Validation Report"
+      status: "completed"
+    - name: "Firmware Forensic Report"
+      status: "completed"
+    - name: "SDK-02 Phase 2C Baseline"
+      status: "completed"
+  archived_files: 5
+  merged_files: 7
+  active_files: 25
+
+repository_health:
+  status: "healthy"
+  python_version: "3.12.3"
+  pyyaml_installed: true
+  sdk_files_intact: true
+  all_directories_present: true
+  all_required_files_present: true
+  last_check: "2026-07-18"
+
+sessions:
+  active: false
+  current_session: null
+  last_session: null
+  total_sessions: 0
+
+blockers: []
+
+risks:
+  - id: "R-001"
+    description: "Some tests reference APIs not yet implemented in Phase 2C"
+    severity: "low"
+    mitigation: "These tests will pass once Phase 2C implementation is complete"
+    status: "resolved"
+
+backups:
+  - name: "2026-07-16 Project Backup.md"
+    date: "2026-07-16"
+    location: "/home/munumu/Qscout/2026-07-16 Project Backup.md"
+  - name: "2026-07-17 Backup.md"
+    date: "2026-07-17"
+    location: "/home/munumu/Qscout/2026-07-17 Backup.md"
+  - name: "Q Scout Native Linux Backup 18-07.md"
+    date: "2026-07-18"
+    location: "/home/munumu/Qscout/Q Scout Native Linux Backup 18-07.md"
+
+release:
+  ready: false
+  reason: "Phase SDK-02 Phase 2C in progress"
+  version: "0.2.0"
+  target_date: "2026-07-25"
+
+next_actions:
+  - order: 1
+    action: "Fix 3 failing tests (1 failure, 2 errors)"
+    agent: "Programmer"
+    task_id: "T-FIX-04"
+  - order: 2
+    action: "Add unit tests for untested commands"
+    agent: "Programmer"
+    task_id: "T-TEST-01"
+
+multi_agent_status: ARCHIVED
+maintenance_mode: false
+development_focus: SDK
+current_project: SDK-03
+
+# Canonical Metric System
+metric_definitions:
+  canonical_document: "docs/METRIC_DEFINITIONS.md"
+  mandatory_rule: "RULE M-001"
+
+last_update: "2026-07-20"

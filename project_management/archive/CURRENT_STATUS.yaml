@@ -1,0 +1,128 @@
+# CURRENT_STATUS.yaml — Technical SDK Status
+# This file contains TECHNICAL SDK details.
+# For operational status, read CONTROL_CENTER.yaml.
+# For execution state, read TASK_STATE.yaml.
+# Last Updated: 2026-07-18
+
+project:
+  name: "Q-Scout Native Linux SDK"
+  objective: "Native Python SDK for controlling Robobloq Q-Scout (RB-00002) via USB/UART"
+
+repository:
+  canonical: "/home/munumu/Qscout"
+  branch: "main"
+  source: "src/qscout/"
+  tests: "tests/"
+  documentation: "docs/"
+  evidence: "evidence/"
+  project_management: "project_management/"
+
+sdk:
+  phase: "SDK-02 Phase 2C"
+  phase_name: "Expand Public API"
+  previous_phase: "SDK-02 Phase 2B — Physical SDK Validation"
+  next_phase: "SDK-03 — Full Coverage, CLI, Examples"
+
+architecture:
+  status: "frozen"
+  layers:
+    - name: "Transport"
+      module: "connection.py"
+      layer: "SDK-01"
+    - name: "Protocol"
+      module: "protocol.py"
+      layer: "SDK-01"
+    - name: "Packet"
+      module: "packet.py"
+      layer: "SDK-01"
+    - name: "Commands"
+      module: "command_map.py"
+      layer: "SDK-02"
+    - name: "Actuators"
+      module: "actuators.py"
+      layer: "SDK-02"
+    - name: "Sensors"
+      module: "sensors.py"
+      layer: "SDK-02"
+    - name: "Facade"
+      module: "__init__.py"
+      layer: "SDK-02"
+
+tests:
+  total: 119
+  passing: 119
+  failing: 0
+  last_run: "2026-07-18"
+  files:
+    - name: "test_protocol.py"
+      count: 36
+    - name: "test_connection.py"
+      count: 11
+    - name: "test_real_packets.py"
+      count: 23
+    - name: "other"
+      count: 49
+
+physical_validation:
+  status: "completed"
+  date: "2026-07-17"
+  commands:
+    - name: "SET_LED"
+      status: "PASS"
+    - name: "SET_MOTOR"
+      status: "PASS"
+    - name: "SET_MOVE"
+      status: "PASS"
+    - name: "SET_BUZZER"
+      status: "PASS"
+    - name: "GET_ULTRASONIC"
+      status: "PASS"
+
+documentation:
+  version: "2.0"
+  last_update: "2026-07-18"
+  documents:
+    - name: "RB Protocol Specification"
+      status: "updated"
+    - name: "Response Matching Mechanism"
+      status: "completed"
+    - name: "Physical Validation Report"
+      status: "completed"
+    - name: "Firmware Forensic Report"
+      status: "completed"
+
+agents:
+  coordinator:
+    role: "Coordinator"
+    document: "AGENT_COORDINATOR.md"
+    status: "available"
+  programmer:
+    role: "Programmer"
+    document: "AGENT_PROGRAMMER.md"
+    status: "available"
+  auditor:
+    role: "Auditor"
+    document: "AGENT_AUDITOR.md"
+    status: "available"
+
+current_task:
+  id: "T-2C-01"
+  title: "Implement GET_DEVICE_INFO Command"
+  assigned_agent: "Programmer"
+  status: "pending"
+
+next_task:
+  id: "T-2C-01"
+  title: "Implement GET_DEVICE_INFO Command"
+  priority: "P1"
+
+blockers: []
+
+status:
+  project: "active"
+  current_phase: "in_progress"
+  tests: "passing"
+  physical_validation: "completed"
+  documentation: "current"
+
+last_update: "2026-07-18"
