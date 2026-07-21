@@ -1,0 +1,13 @@
+{
+  "tests/test_command_map.py": true,
+  "tests/test_commands.py": true,
+  "tests/test_packet.py": true,
+  "tests/test_protocol_isolated.py::TestExtractPackets::test_extract_multiple_packets": true,
+  "tests/test_protocol_isolated.py::TestBuildersAndParsers::test_parse_ultrasonic": true,
+  "tests/test_protocol_isolated.py::TestBuildersAndParsers::test_parse_voltage": true,
+  "tests/test_connection.py::TestReceive::test_receive_success": true,
+  "tests/test_connection.py::TestSendReceive::test_send_receive": true,
+  "tests/test_connection.py::TestFlush::test_flush": true,
+  "tests/test_actuators.py::TestActuators::test_led_invalid_rgb_negative": true,
+  "tests/test_actuators.py::TestActuators::test_led_invalid_rgb_over_255": true
+}
